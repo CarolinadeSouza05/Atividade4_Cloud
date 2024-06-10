@@ -19,7 +19,8 @@ app.get("/liveness", (req, res) => {
         .status(200)
         .json({
             status:true,
-            mensagem:"OK 1" 
+            mensagem:"Meu app está vivo" ,
+            path: process.cwd(),
         });
 });
 
@@ -28,7 +29,11 @@ app.get("/readiness", (req, res) => {
         .status(200)
         .json({
             status:true,
-            mensagem:"OK 2"
+            mensagem:"Meu app está pronto",
+            platform: os.platform(),
+            freemem: os.freemem(),
+            homedir:os.homedir(),
+            date:new Date().getTime()
         });
 });
 
