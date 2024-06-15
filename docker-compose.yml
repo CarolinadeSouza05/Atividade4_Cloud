@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: backend
+    depends_on:
+      - db
+    ports:
+      - "3001:3001"
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sys
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./ativooperante.sql:/docker-entrypoint-initdb.d/ativooperante.sql
